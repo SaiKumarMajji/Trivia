@@ -1,13 +1,132 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Karla&family=Roboto:wght@300&display=swap');
+
+
+* {
+  box-sizing: border-box;
+} 
+
+.intro-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F5F7FB;
+  background-image: url("../public/triviaimg/blobtop.png"), url("../public/triviaimg/blobbottom.png") ;
+  background-repeat: no-repeat;
+  background-position: top right, bottom left;
+  background-size: 150px 120px;
+  text-align: center;
+}
+.header {
+  color: #293264;
+  font-family:'Karla';
+  font-style: normal;
+  font-weight: 700;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.description {
+  color: #293264;
+  font-family:'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+.start-quiz {
+  color: #F5F7FB;
+  background-color: #4D5B9E;
+  border: none;
+  height: 52px;
+  width: 200px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.options {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  font-weight: 500;
+}
+
+.line {
+  border-bottom: 1px solid #DBDEF0;
+}
+
+.bg {
+  background-color: white;
+  border-radius: 9px;
+  border-color: #4D5B9E;
+  color:  #293264;
+  border-style: solid;
+  border-width: 1px;
+  width: 155px;
+  display: flex;
+  justify-content: center;
+  font-family: "Inter";
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.q{
+  color: #293264;
+  font-weight: 700;
+  font-size: 18px;
+  font-family: "Karla";
+}
+
+.check {
+  margin-top: 35px;
+  background-color: #4D5B9E;
+  width: 125px;
+  height: 40px;
+  font-family: "Inter";
+  border-width: 0px;
+  color: #F5F7FB;
+  border-radius: 10px;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.error {
+  color: red;
+  font-family: "Inter";
+  font-weight: 500;
+}
+
+.flex {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 55px;
+}
+
+.scoreinfo {
+  color: #293264;
+  font-size: 18px;
+  font-family: "Inter";
+  font-weight: 700;
+}
+
+.new-game {
+  color: #F5F7FB;
+  background-color: #4D5B9E;
+  height: 45px;
+  width: 173px;
+  cursor: pointer;
+  border-width: 0px;
+  border-radius: 10px;
+  font-family: "Inter";
+  font-weight: 600;
 }
