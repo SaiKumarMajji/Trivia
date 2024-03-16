@@ -8,29 +8,63 @@ export default function Quiz() {
   const [errorMessage, setErrorMessage] = React.useState("");
   const [score, setScore] = React.useState(0);
 
+  // const fetchQuestions = useCallback(() => {
+  //   fetch(
+  //     "https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const qs = data.results.map((q) => {
+  //         const answers = [...q.incorrect_answers, q.correct_answer];
+  //         return {
+  //           id: q.question,
+  //           question: decodeEntities(q.question),
+  //           answers: shuffleArray(answers.map(decodeEntities)),
+  //           correctAnswer: decodeEntities(q.correct_answer),
+  //           selectedAnswer: null,
+  //         };
+  //       });
+  //       setQuestions(qs);
+  //     });
+  // }, []);
+
   const fetchQuestions = useCallback(() => {
     fetch(
       "https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple"
     )
       .then((res) => res.json())
       .then((data) => {
-        const qs = data.results.map((q) => {
-          const answers = [...q.incorrect_answers, q.correct_answer];
-          return {
-            id: q.question,
-            question: q.question,
-            answers: shuffleArray(answers),
-            correctAnswer: q.correct_answer,
-            selectedAnswer: null,
-          };
-        });
-        setQuestions(qs);
+        if (data.results) {
+          const qs = data.results.map((q) => {
+            const answers = [...q.incorrect_answers, q.correct_answer];
+            return {
+              id: q.question,
+              question: decodeEntities(q.question),
+              answers: shuffleArray(answers.map(decodeEntities)),
+              correctAnswer: decodeEntities(q.correct_answer),
+              selectedAnswer: null,
+            };
+          });
+          setQuestions(qs);
+        } else {
+          setErrorMessage("Failed to fetch questions. Please try again later.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching questions:", error);
+        setErrorMessage("Failed to fetch questions. Please try again later.");
       });
   }, []);
 
   React.useEffect(() => {
     fetchQuestions();
   }, [fetchQuestions]);
+
+  function decodeEntities(encodedString) {
+    const textArea = document.createElement("textarea");
+    textArea.innerHTML = encodedString;
+    return textArea.value;
+  }
 
   function shuffleArray(array) {
     const shuffled = [...array];
@@ -117,21 +151,23 @@ export default function Quiz() {
               </div>
             </div>
           ))}
-          {showResults ? (
-            <div className="flex">
-              <p className="scoreinfo">
-                You scored {score}/{questions.length} correct answers{" "}
-              </p>
-              <button className="new-game" onClick={startNewGame}>
-                Play again
+          <div>
+            {showResults ? (
+              <div className="flex">
+                <p className="scoreinfo">
+                  You scored {score}/{questions.length} correct answers{" "}
+                </p>
+                <button className="new-game" onClick={startNewGame}>
+                  Play again
+                </button>
+              </div>
+            ) : (
+              <button className="check" onClick={checkAnswers}>
+                Check answers
               </button>
-            </div>
-          ) : (
-            <button className="check" onClick={checkAnswers}>
-              Check answers
-            </button>
-          )}
-          {errorMessage && <p className="error">{errorMessage}</p>}
+            )}
+            {errorMessage && <p className="error">{errorMessage}</p>}
+          </div>
         </>
       ) : (
         <>
