@@ -118,9 +118,11 @@ export default function Quiz() {
         <>
           {questions.map((question) => (
             <div key={question.id}>
-              <h1 className="q">{question.question}</h1>
+              <h1 className="q text-Karla text-[#293264] font-bold text-[14px] md:text-[18px] p-[10px]">
+                {question.question}
+              </h1>
               <div className="line">
-                <div className="options">
+                <div className="options flex flex-wrap justify-center">
                   {question.answers.map((answer, index) => {
                     const isSelected = selectedAnswers[question.id] === answer;
                     const isCorrect = question.correctAnswer === answer;

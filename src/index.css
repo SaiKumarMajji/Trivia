@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Karla&family=Roboto:wght@300&display=swap");
 
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -51,14 +56,6 @@
   cursor: pointer;
 }
 
-.options {
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
-  gap: 35px;
-  font-weight: 500;
-  padding-bottom: 7px;
-}
 
 .line {
   border-bottom: 1px solid #dbdef0;
@@ -80,13 +77,6 @@
   cursor: pointer;
 }
 
-.q {
-  color: #293264;
-  font-weight: 700;
-  font-size: 18px;
-  font-family: "Karla";
-  padding: 25px;
-}
 
 .check {
   margin-top: 30px;
